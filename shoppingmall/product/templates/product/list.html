@@ -1,0 +1,67 @@
+{% extends "product/base.html" %}
+
+{% block contents %}
+
+                        <table class="table my_custom_table">
+
+                                <tr>
+                                    <div class="text-center">
+                                    <th colspan="10">
+                                        <h3>구매 가능 목록</h3>
+
+                                    </div>
+                                </tr>
+
+                        </table>
+
+
+
+<div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+    <td>
+{% for product in products %}
+    <dir>
+
+         <div class = "row mx-auto">
+                    <div class="col-20 col-sm-20 col-md-20 col-lg-6 text-center">
+                        <table class="table my_custom_table">
+                            <thread class="my_custom_thread">
+                                <tr>
+                                    <th colspan="30">
+                                         ITEM
+
+                                    </th>
+
+                                </tr>
+                            </thread>
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+          {% for photo in product.photo_set.all %}
+            <img src="{{ photo.image.url}}" width="150"><br>
+          {% endfor %}
+
+        <strong> {{product.title}}</strong>
+        <br>
+        price : {{product.price}}원
+        <br>
+        description :{{product.description}}
+        <br>
+        <a class = "btn btn-secondary" href="{%url 'pick:add_pick' product.id %}"> Pick</a>
+        <br>
+        --------------------------------------------------
+        <br>
+
+
+    </dir>
+{% endfor %}
+        <dir>
+        <button class="btn btn-secondary" onclick="location.href='/'">홈으로</button>
+        </dir>
+
+</div>
+
+{% endblock %}

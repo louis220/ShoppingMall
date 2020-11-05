@@ -1,0 +1,74 @@
+{% extends "pick/base.html" %}
+
+{% block contents %}
+    {% if not pick_items %}
+    <div>
+        <div class="text-center">
+            <h1 class = "text-center my_title">
+                    찜한 목록이 없습니다
+            </h1>
+            <br>
+        </div>
+    </div>
+    {% else %}
+    <div>
+        <div class="text-center">
+            <h3 class ="text-center my_title">
+                찜한 목록
+            </h3>
+
+        </div>
+        <br>
+    </div>
+                <div class = "row mx-auto">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+                        <table class="table my_custom_table">
+
+                                <tr>
+                                    <th colspan="5">
+                                        YOUR ITEMS
+
+                                    </th>
+                                </tr>
+                        </table>
+                    </div>
+                </div>
+            <tbody>
+
+        {% for pick_item in pick_items %}
+            <tr>
+                <td>
+
+                <a href = "{{pick_item.product.get_absolute_url}}">
+                    <img src="{{ pick_item.product.image.url}}" ><br>
+                </a>
+
+                </td>
+                <td class = "text-left">
+                    {{pick_item.product.title}}
+                    <br>
+                    PRICE : {{pick_item.product.price}}
+                    <br>
+                    Qty : {{pick_item.quantity}} * {{pick_item.product.price}}
+                    <br>
+
+                </td>
+                {% endfor %}
+                {% endif %}
+
+                <td>
+                    <br>
+                    합계 : <strong> {{ total }} </strong>
+                </td>
+                <td>
+                    <a class = "btn btn-secondary" href=" "> 계산 </a>
+                </td>
+            </tr>
+
+            </tbody>
+
+        <dir>
+        <button class="btn btn-secondary" onclick="location.href='/list/'">상품 목록</button>
+        </dir>
+
+{% endblock %}

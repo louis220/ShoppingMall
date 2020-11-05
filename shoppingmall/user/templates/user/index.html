@@ -1,0 +1,46 @@
+{% extends "user/base.html" %}
+{% block contents %}
+
+{% ifnotequal id ' ' %}
+
+<h3> 회원님 환영합니다. </h3>
+
+{% else %}
+<h3> 환영합니다. </h3>
+{% endifnotequal %}
+
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h3> Shopping Mall </h3>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-12">
+        {% ifnotequal id ' ' %}
+        <button class="btn btn-secondary" onclick="location.href='/logout/'">로그아웃</button>
+        {% else %}
+        <button class="btn btn-secondary" onclick="location.href='/register/'">회원가입</button>
+        <button class="btn btn-secondary" onclick="location.href='/login/'">로그인</button>
+        {% endifnotequal %}
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <button class="btn btn-secondary" onclick="location.href='/list/'">상품 목록</button>
+                {% ifnotequal id ' ' %}
+                <button class="btn btn-secondary" onclick="location.href='/order/'">내 주문 목록</button>
+                <button class="btn btn-secondary" onclick="location.href='/pick/'">찜한 목록</button>
+                {% endifnotequal %}
+        <div class ="row mt-5">
+            <div class = "col-12">
+                {% ifnotequal id 'admin' %}
+                {% else %}
+                <button class="btn btn-secondary" onclick="location.href='/update/'">제품 등록</button>
+                {% endifnotequal %}
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

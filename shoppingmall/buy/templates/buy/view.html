@@ -1,0 +1,65 @@
+{% extends "buy/base.html" %}
+
+{% block contents %}
+    {% if not buy %}
+    <div>
+        <div class="text-center">
+            <h1 class = "text-center my_title">
+                   구매한 목록이 없습니다
+            </h1>
+            <br>
+        </div>
+    </div>
+    {% else %}
+    <div>
+        <div class="text-center">
+            구매한 목록
+        </div>
+        <br>
+
+    </div>
+
+                                <tr>
+                                    <th colspan="5">
+                                        YOUR ITEMS
+
+                                    </th>
+
+                                </tr>
+
+            <tbody>
+
+        {% for pick_item in Buy_items: %}
+            <tr>
+                <td>
+
+                <a href = "{{pick_item.product.get_absolute_url}}">
+                    <img src="{{ pick_item.product.image.url}}" ><br>
+                </a>
+
+                </td>
+                <td class = "text-left">
+                    {{pick_item.product.title}}
+                    <br>
+                    PRICE : {{pick_item.product.price}}
+                    <br>
+                    Qty : {{pick_item.quantity}} * {{pick_item.product.price}}
+                    <br>
+
+                </td>
+                {% endfor %}
+                 {% endif %}
+
+                <td>
+                    합계 : <strong> {{ total }} </strong><br>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+
+            </tbody>
+
+
+
+{% endblock %}

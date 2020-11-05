@@ -1,0 +1,37 @@
+{% extends "product/base.html" %}
+{% block contents %}
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        <h1>제품등록</h1>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-12 text-center">
+        {{error}}
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col-12">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{field.id_for_label }}">{{field.label}}</label>
+                <input type={{field.field.widget.input_type}} class="form-control" id="{{field.id_for_label}}" placeholder="{{field.label}}" name="{{field.name}}"/>
+
+            </div>
+            {% if field.errors %}
+            <span style="color:red">{{field.errors}}</span>
+
+            {% endif %}
+            {% endfor %}
+
+            <div><input type="file" name="imgs" multiple></div>
+
+            <button type="submit" class="btn btn-secondary">제품등록</button>
+
+        </form>
+        <button class="btn btn-secondary" onclick="location.href='/'">취소</button>
+    </div>
+</div>
+{% endblock %}
